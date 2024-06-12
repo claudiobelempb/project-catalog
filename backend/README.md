@@ -70,7 +70,7 @@ public record PersonCustomDTO(
 ## PersonMapper
 
 ```
-public static PersonDepartmentCustomDTO toDTO(Person entity) {
+    public static PersonDepartmentCustomDTO toDTO(Person entity) {
         return new PersonDepartmentCustomDTO(
                 entity.getId(),
                 entity.getName(),
