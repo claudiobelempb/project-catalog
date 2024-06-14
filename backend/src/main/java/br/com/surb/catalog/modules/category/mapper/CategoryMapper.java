@@ -1,6 +1,7 @@
 package br.com.surb.catalog.modules.category.mapper;
 
 import br.com.surb.catalog.modules.category.entity.Category;
+import br.com.surb.catalog.modules.category.request.CategoryRequest;
 import br.com.surb.catalog.modules.category.response.CategoryResponse;
 
 public final class CategoryMapper {
@@ -9,7 +10,7 @@ public final class CategoryMapper {
                 entity.getId(),
                 entity.getName(),
                 entity.getCreatedAt(),
-                entity.getUpdateAt(),
+                entity.getUpdatedAt(),
                 entity.isActive()
         );
     }
@@ -22,6 +23,13 @@ public final class CategoryMapper {
                 response.updateAt(),
                 response.active()
         );
-
     }
+
+    public static Category toEntity(CategoryRequest request) {
+        Category entity = new Category();
+        entity.setName(request.name());
+
+        return entity;
+    }
+
 }

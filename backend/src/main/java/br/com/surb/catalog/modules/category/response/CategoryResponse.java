@@ -3,10 +3,9 @@ package br.com.surb.catalog.modules.category.response;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.UUID;
 
 public record CategoryResponse(
-        UUID id,
+        Long id,
         String name,
         Instant createdAt,
         Instant updateAt,
