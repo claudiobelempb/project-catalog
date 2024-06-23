@@ -113,6 +113,18 @@ public class Product implements Serializable {
         return categories;
     }
 
+    @PrePersist
+    public void prePersist() {
+        createdAt = Instant.now();
+        this.updatedAt = createdAt;
+        active = true;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = Instant.now();
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;

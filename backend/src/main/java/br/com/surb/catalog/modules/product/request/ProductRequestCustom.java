@@ -1,6 +1,8 @@
 package br.com.surb.catalog.modules.product.request;
 
 import br.com.surb.catalog.modules.category.entity.Category;
+import br.com.surb.catalog.modules.category.response.CategoryResponse;
+import br.com.surb.catalog.modules.category.response.CategoryResponseCustom;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -12,8 +14,7 @@ public record ProductRequestCustom(
         String description,
         Double price,
         String imgUri,
-        boolean active,
-        Set<Category> categories
+        Set<CategoryResponse> categories
 ) implements Serializable {
     @Serial
     private static final long serialVersionUID = -6654711856644401040L;

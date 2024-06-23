@@ -14,6 +14,19 @@ import java.time.Instant;
 @ControllerAdvice
 public class AppResourceAdviceExceptionHandler {
 
+    @ExceptionHandler(AppResourceNotFondExecption.class)
+    public ResponseEntity<StandarError> resourceNotFond(AppResourceNotFondExecption e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+
+        return ResponseEntity.status(status).body(new StandarError(
+                Instant.now(),
+                status.value(),
+                AppExceptionConstants.NOT_FOUND,
+                e.getMessage(),
+                request.getRequestURI())
+        );
+    }
+
     @ExceptionHandler(AppEntityNotFoundException.class)
     public ResponseEntity<StandarError> entityNotFound(AppEntityNotFoundException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
