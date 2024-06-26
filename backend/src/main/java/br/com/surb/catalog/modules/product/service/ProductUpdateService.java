@@ -10,6 +10,7 @@ import br.com.surb.catalog.modules.product.request.ProductRequestCustom;
 import br.com.surb.catalog.modules.product.response.ProductResponse;
 import br.com.surb.catalog.shared.constants.AppExceptionConstants;
 import br.com.surb.catalog.shared.exeptions.ExeptionsResource.AppResourceNotFondExecption;
+import br.com.surb.catalog.shared.exeptions.ExeptionsService.AppEntityNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,8 @@ public class ProductUpdateService {
     @Transactional
     public ProductResponse execute(Long id, ProductRequestCustom request) {
         try {
+            productRepository.findByIdAndActive(id, true)
+                    .orElseThrow(() -> new AppEntityNotFoundException(AppExceptionConstants.ENTITY_DEACTIVATE + id));
             Product entity = productRepository.getReferenceById(id);
             Product customRequest = ProductMapper.toCustomRequest(
                     entity,
