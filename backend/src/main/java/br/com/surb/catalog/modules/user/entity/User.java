@@ -1,6 +1,6 @@
-package br.com.surb.catalog.modules.product.entity;
+package br.com.surb.catalog.modules.user.entity;
 
-import br.com.surb.catalog.modules.category.entity.Category;
+import br.com.surb.catalog.modules.role.entity.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,21 +16,18 @@ import java.util.Set;
 @Builder
 @EqualsAndHashCode
 @Entity
-@Table(name = "tb_product")
-public class Product implements Serializable {
+@Table(name = "tb_user")
+public class User implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 8531726573812478003L;
-
+    private static final long serialVersionUID = -759894211078284932L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    @Column(columnDefinition = "TEXT")
-    private String description;
-    private Double price;
-    private String imgUri;
-
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant createdAt;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
@@ -39,10 +36,10 @@ public class Product implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name = "tb_product_category",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private final Set<Category> categories = new HashSet<>();
+            name = "tb_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private final Set<Role> roles = new HashSet<>();
 
     @PrePersist
     public void prePersist() {

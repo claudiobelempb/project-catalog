@@ -1,6 +1,6 @@
-package br.com.surb.catalog.modules.product.entity;
+package br.com.surb.catalog.modules.role.entity;
 
-import br.com.surb.catalog.modules.category.entity.Category;
+import br.com.surb.catalog.modules.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,33 +16,24 @@ import java.util.Set;
 @Builder
 @EqualsAndHashCode
 @Entity
-@Table(name = "tb_product")
-public class Product implements Serializable {
+@Table(name = "tb_role")
+public class Role implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 8531726573812478003L;
+    private static final long serialVersionUID = 7083337724166923364L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    @Column(columnDefinition = "TEXT")
-    private String description;
-    private Double price;
-    private String imgUri;
-
+    private String authority;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant createdAt;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant updatedAt;
     private boolean active;
 
-    @ManyToMany
-    @JoinTable(
-            name = "tb_product_category",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private final Set<Category> categories = new HashSet<>();
+    @ManyToMany(mappedBy = "roles")
+    private final Set<User> users = new HashSet<>();
 
     @PrePersist
     public void prePersist() {
@@ -55,5 +46,4 @@ public class Product implements Serializable {
     public void preUpdate() {
         updatedAt = Instant.now();
     }
-
 }
