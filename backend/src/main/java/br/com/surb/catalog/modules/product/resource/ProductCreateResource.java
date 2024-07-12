@@ -1,6 +1,7 @@
 package br.com.surb.catalog.modules.product.resource;
 
-import br.com.surb.catalog.modules.product.request.ProductRequestCustom;
+import br.com.surb.catalog.modules.product.request.ProductCategoryRequest;
+import br.com.surb.catalog.modules.product.response.ProductCategoryResponse;
 import br.com.surb.catalog.modules.product.response.ProductResponse;
 import br.com.surb.catalog.modules.product.service.ProductCreateService;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,8 @@ public class ProductCreateResource {
     }
 
     @PostMapping
-    public CompletableFuture<ResponseEntity<ProductResponse>> handle(@RequestBody ProductRequestCustom request) {
-        ProductResponse response = productCreateService.execute(request);
+    public CompletableFuture<ResponseEntity<ProductCategoryResponse>> handle(@RequestBody ProductCategoryRequest request) {
+        ProductCategoryResponse response = productCreateService.execute(request);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(response.id()).toUri();
         return supplyAsync(() -> response).thenApply((__) -> ResponseEntity.created(uri).body(response));
     }

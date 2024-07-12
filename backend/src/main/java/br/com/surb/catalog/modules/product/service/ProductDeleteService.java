@@ -18,7 +18,7 @@ public class ProductDeleteService {
     public void execute(Long id) {
         try {
             if (productRepository.existsByIdAndActive(id, true) || !productRepository.existsByIdAndActive(id, false)) {
-                throw new AppEntityNotFoundException(AppExceptionConstants.ENTITY_NOT_FOUND);
+                throw new AppEntityNotFoundException(AppExceptionConstants.ENTITY_DEACTIVATE);
             }
             productRepository.deleteById(id);
         } catch (DataIntegrityViolationException e) {

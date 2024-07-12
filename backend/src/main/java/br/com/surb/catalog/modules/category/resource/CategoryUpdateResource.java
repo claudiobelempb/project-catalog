@@ -24,6 +24,6 @@ public class CategoryUpdateResource {
 
     @PutMapping(value = "/{id}")
     public CompletableFuture<ResponseEntity<CategoryResponse>> handle(@PathVariable Long id, @RequestBody CategoryRequest request) {
-        return supplyAsync(() -> categoryUpdateService.execute(id, request), executor).thenApply((category) -> ResponseEntity.ok().body(category));
+        return supplyAsync(() -> categoryUpdateService.execute(id, request), executor).thenApply((response) -> ResponseEntity.ok().body(response));
     }
 }

@@ -1,6 +1,7 @@
 package br.com.surb.catalog.modules.product.resource;
 
-import br.com.surb.catalog.modules.product.request.ProductRequestCustom;
+import br.com.surb.catalog.modules.product.request.ProductCategoryRequest;
+import br.com.surb.catalog.modules.product.response.ProductCategoryResponse;
 import br.com.surb.catalog.modules.product.response.ProductResponse;
 import br.com.surb.catalog.modules.product.service.ProductUpdateService;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class ProductUpdateResource {
     }
 
     @PutMapping(value = "/{id}")
-    public CompletableFuture<ResponseEntity<ProductResponse>> handle(@PathVariable Long id, @RequestBody ProductRequestCustom request) {
+    public CompletableFuture<ResponseEntity<ProductCategoryResponse>> handle(@PathVariable Long id, @RequestBody ProductCategoryRequest request) {
         return supplyAsync(() -> productUpdateService.execute(id, request)).thenApply((entity) -> ResponseEntity.ok().body(entity));
     }
 }

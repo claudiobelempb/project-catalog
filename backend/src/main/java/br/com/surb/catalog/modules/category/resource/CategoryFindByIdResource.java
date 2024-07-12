@@ -1,6 +1,6 @@
 package br.com.surb.catalog.modules.category.resource;
 
-import br.com.surb.catalog.modules.category.response.CategoryResponse;
+import br.com.surb.catalog.modules.category.response.CategoryProductResponse;
 import br.com.surb.catalog.modules.category.service.CategoryFindByIdService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +31,7 @@ public class CategoryFindByIdResource {
     }*/
 
     @GetMapping(value = "/{id}")
-    public CompletableFuture<ResponseEntity<CategoryResponse>> handle(@PathVariable Long id) {
+    public CompletableFuture<ResponseEntity<CategoryProductResponse>> handle(@PathVariable Long id) {
         return supplyAsync(() -> categoryFindByIdService.execute(id), executor).thenApply((response) -> ResponseEntity.ok().body(response));
     }
 }

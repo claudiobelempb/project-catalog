@@ -1,11 +1,17 @@
 package br.com.surb.catalog.modules.category.mapper;
 
 import br.com.surb.catalog.modules.category.entity.Category;
+import br.com.surb.catalog.modules.category.repository.CategoryRepository;
 import br.com.surb.catalog.modules.category.request.CategoryRequest;
+import br.com.surb.catalog.modules.category.response.CategoryProductResponse;
 import br.com.surb.catalog.modules.category.response.CategoryResponse;
+import br.com.surb.catalog.modules.product.response.ProductCustomResponse;
+
+import java.util.stream.Collectors;
 
 public final class CategoryMapper {
-    public static CategoryResponse toDTO(Category entity) {
+
+    public static CategoryResponse toResponse(Category entity) {
         return new CategoryResponse(
                 entity.getId(),
                 entity.getName(),
@@ -15,20 +21,29 @@ public final class CategoryMapper {
         );
     }
 
-    public static Category toEntity(CategoryResponse response) {
-        return new Category(
-                response.id(),
-                response.name(),
-                response.createdAt(),
-                response.updateAt(),
-                response.active()
+    public static CategoryProductResponse toCategoryProductResponse(Category entity) {
+        return new CategoryProductResponse(
+                entity.getId(),
+                entity.getName(),
+                entity.getCreatedAt(),
+                entity.getUpdatedAt(),
+                entity.isActive(),
+                entity.getProducts().stream().map(r -> new ProductCustomResponse(
+                        r.getId(),
+                        r.getName(),
+                        r.isActive()
+                )).collect(Collectors.toSet()
+                )
         );
     }
 
-    public static Category toEntity(CategoryRequest request) {
-        Category entity = new Category();
-        entity.setName(request.name());
+    public static Category toRequest(CategoryRequest request) {
+        return Category.builder().name(request.name()).build();
+    }
 
+    public static Category toRequest(Long id, CategoryRequest request, CategoryRepository repository) {
+        Category entity = repository.getReferenceById(id);
+        entity.setName(request.name());
         return entity;
     }
 

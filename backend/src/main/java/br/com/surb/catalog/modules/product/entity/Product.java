@@ -7,8 +7,8 @@ import lombok.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -42,7 +42,7 @@ public class Product implements Serializable {
             name = "tb_product_category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private final Set<Category> categories = new HashSet<>();
+    private final List<Category> categories = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {

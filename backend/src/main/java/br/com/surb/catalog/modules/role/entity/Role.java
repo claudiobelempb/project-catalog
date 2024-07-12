@@ -7,8 +7,8 @@ import lombok.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -33,7 +33,7 @@ public class Role implements Serializable {
     private boolean active;
 
     @ManyToMany(mappedBy = "roles")
-    private final Set<User> users = new HashSet<>();
+    private final List<User> users = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {

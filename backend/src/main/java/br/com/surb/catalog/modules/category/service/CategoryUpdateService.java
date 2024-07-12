@@ -25,10 +25,9 @@ public class CategoryUpdateService {
     public CategoryResponse execute(Long id, CategoryRequest request) {
         try {
             Objects.requireNonNull(id);
-            Category entity = categoryRepository.getReferenceById(id);
-            entity.setName(request.name());
+            Category entity = CategoryMapper.toRequest(id, request, categoryRepository);
             entity = categoryRepository.save(entity);
-            return CategoryMapper.toDTO(entity);
+            return CategoryMapper.toResponse(entity);
         } catch (EntityNotFoundException e) {
             throw new AppEntityNotFoundException(AppExceptionConstants.ENTITY_NOT_FOUND + id);
         }

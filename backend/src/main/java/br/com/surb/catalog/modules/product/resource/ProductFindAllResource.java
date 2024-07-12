@@ -1,5 +1,6 @@
 package br.com.surb.catalog.modules.product.resource;
 
+import br.com.surb.catalog.modules.product.response.ProductCategoryResponse;
 import br.com.surb.catalog.modules.product.response.ProductResponse;
 import br.com.surb.catalog.modules.product.service.ProductFindAllService;
 import org.springframework.data.domain.Page;
@@ -26,7 +27,7 @@ public class ProductFindAllResource {
     }
 
     @GetMapping
-    public CompletableFuture<ResponseEntity<Page<ProductResponse>>> handle(
+    public CompletableFuture<ResponseEntity<Page<ProductCategoryResponse>>> handle(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
             @RequestParam(value = "direction", defaultValue = "ASC") String direction,
