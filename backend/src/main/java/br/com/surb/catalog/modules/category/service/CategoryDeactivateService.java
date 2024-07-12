@@ -20,9 +20,9 @@ public class CategoryDeactivateService {
     @Transactional
     public void execute(Long id) {
         Objects.requireNonNull(id);
-        Category entiry = categoryRepository.findByIdAndActive(id, true)
+        Category entity = categoryRepository.findByIdAndActive(id, true)
                 .orElseThrow(() -> new AppEntityNotFoundException(AppExceptionConstants.ENTITY_NOT_FOUND + id));
-        entiry.setActive(false);
-        categoryRepository.save(entiry);
+        entity.setActive(false);
+        categoryRepository.save(entity);
     }
 }

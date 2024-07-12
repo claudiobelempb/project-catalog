@@ -3,6 +3,7 @@ package br.com.surb.catalog.modules.product.service;
 import br.com.surb.catalog.modules.product.entity.Product;
 import br.com.surb.catalog.modules.product.mapper.ProductMapper;
 import br.com.surb.catalog.modules.product.repository.ProductRepository;
+import br.com.surb.catalog.modules.product.response.ProductCategoryResponse;
 import br.com.surb.catalog.modules.product.response.ProductResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,8 +19,8 @@ public class ProductFindAllService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductResponse> execute(Pageable pageable) {
-        Page<Product> list = productRepository.findAll(pageable);
-        return list.map((r) -> ProductMapper.toResponse(r));
+    public Page<ProductCategoryResponse> execute(Pageable pageable) {
+        Page<Product> products = productRepository.findAll(pageable);
+        return products.map((r) -> ProductMapper.toCustomResponse(r));
     }
 }

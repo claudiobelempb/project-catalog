@@ -6,7 +6,7 @@ public final class AppExceptionConstants {
     }
 
     public static final String ENTITY_NOT_FOUND = ".Entity not found ";
-    public static final String ENTITY_DEACTIVATE = ".Entity not found or not active ";
+    public static final String ENTITY_DEACTIVATE = ".Entity not found or not deactivate ";
     public static final String RESOURCE_NOT_FOUND = ".Resource not found ";
     public static final String VALID_SORT = ".No valid sortable fields were defined ";
     public static final String EMAIL_NOT_FOUND = ".Email not found ";

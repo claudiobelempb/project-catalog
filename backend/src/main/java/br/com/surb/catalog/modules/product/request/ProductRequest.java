@@ -3,6 +3,7 @@ package br.com.surb.catalog.modules.product.request;
 import java.io.Serial;
 import java.io.Serializable;
 
+
 public record ProductRequest(
         Long id,
         String name,

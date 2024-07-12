@@ -20,6 +20,6 @@ public class CategoryFindAllService {
     @Transactional(readOnly = true)
     public Page<CategoryResponse> execute(Pageable pageable) {
         Page<Category> categories = categoryRepository.findAll(pageable);
-        return categories.map((category) -> CategoryMapper.toDTO(category));
+        return categories.map((r) -> CategoryMapper.toResponse(r));
     }
 }

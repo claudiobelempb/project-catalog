@@ -16,8 +16,8 @@ public class CategoryCreateService {
     }
 
     public CategoryResponse execute(CategoryRequest request) {
-        Category entity = CategoryMapper.toEntity(request);
+        Category entity = CategoryMapper.toRequest(request);
         entity = categoryRepository.save(entity);
-        return CategoryMapper.toDTO(entity);
+        return CategoryMapper.toResponse(entity);
     }
 }
