@@ -2,7 +2,7 @@ package br.com.surb.catalog.modules.user.service;
 
 import br.com.surb.catalog.modules.user.entity.User;
 import br.com.surb.catalog.modules.user.repository.UserRepository;
-import br.com.surb.catalog.shared.constants.AppExceptionConstants;
+import br.com.surb.catalog.shared.constants.ExceptionConstants;
 import br.com.surb.catalog.shared.exeptions.ExeptionsService.AppEntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +22,7 @@ public class UserActiveService {
         Objects.requireNonNull(id);
         User entity = userRepository
                 .findByIdAndActive(id, false)
-                .orElseThrow(() -> new AppEntityNotFoundException(AppExceptionConstants.ENTITY_NOT_FOUND + id));
+                .orElseThrow(() -> new AppEntityNotFoundException(ExceptionConstants.ENTITY_NOT_FOUND + id));
         entity.setActive(true);
         userRepository.save(entity);
     }

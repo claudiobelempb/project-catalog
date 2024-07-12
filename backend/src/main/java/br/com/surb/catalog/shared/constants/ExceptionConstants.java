@@ -1,8 +1,8 @@
 package br.com.surb.catalog.shared.constants;
 
-public final class AppExceptionConstants {
+public final class ExceptionConstants {
 
-    public AppExceptionConstants() {
+    public ExceptionConstants() {
     }
 
     public static final String ENTITY_NOT_FOUND = ".Entity not found ";
@@ -13,6 +13,7 @@ public final class AppExceptionConstants {
     public static final String USER_NOT_FOUND = ".User not found ";
     public static final String USER_FOUND = ".User found ";
     public static final String INTEGRITY_VIOLATION = ".Integrity violation ";
+    public static final String VIOLATION_ERROR = ".Validation exception";
     public static final String DATA_INTEGRITY_VIOLATION = ".Data integrity violation ";
     public static final String INVALID_USER = ".Invalid user ";
     public static final String ACCESS_DENIED = ".Access denied ";

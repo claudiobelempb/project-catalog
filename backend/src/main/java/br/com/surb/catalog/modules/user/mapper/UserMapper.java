@@ -13,7 +13,6 @@ import br.com.surb.catalog.modules.user.response.UserRoleResponse;
 import java.util.stream.Collectors;
 
 public final class UserMapper {
-
     public static UserResponse toResponse(User entity) {
         if (entity == null) {
             return null;
@@ -68,7 +67,6 @@ public final class UserMapper {
         entity.setFirstName(request.firstName());
         entity.setLastName(request.lastName());
         entity.setEmail(request.email());
-        entity.setPassword(request.password());
 
         entity.getRoles().clear();
         for (RoleCustomResponse r : request.roles()) {
@@ -91,7 +89,6 @@ public final class UserMapper {
         entity.setFirstName(request.firstName());
         entity.setLastName(request.lastName());
         entity.setEmail(request.email());
-        entity.setPassword(request.password());
 
         entity.getRoles().clear();
         for (RoleCustomResponse r : request.roles()) {

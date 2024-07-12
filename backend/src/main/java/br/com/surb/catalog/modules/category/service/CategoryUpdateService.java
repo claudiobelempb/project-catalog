@@ -5,7 +5,7 @@ import br.com.surb.catalog.modules.category.mapper.CategoryMapper;
 import br.com.surb.catalog.modules.category.repository.CategoryRepository;
 import br.com.surb.catalog.modules.category.request.CategoryRequest;
 import br.com.surb.catalog.modules.category.response.CategoryResponse;
-import br.com.surb.catalog.shared.constants.AppExceptionConstants;
+import br.com.surb.catalog.shared.constants.ExceptionConstants;
 import br.com.surb.catalog.shared.exeptions.ExeptionsService.AppEntityNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class CategoryUpdateService {
             entity = categoryRepository.save(entity);
             return CategoryMapper.toResponse(entity);
         } catch (EntityNotFoundException e) {
-            throw new AppEntityNotFoundException(AppExceptionConstants.ENTITY_NOT_FOUND + id);
+            throw new AppEntityNotFoundException(ExceptionConstants.ENTITY_NOT_FOUND + id);
         }
     }
 }

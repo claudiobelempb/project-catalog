@@ -1,7 +1,7 @@
 package br.com.surb.catalog.modules.product.service;
 
 import br.com.surb.catalog.modules.product.repository.ProductRepository;
-import br.com.surb.catalog.shared.constants.AppExceptionConstants;
+import br.com.surb.catalog.shared.constants.ExceptionConstants;
 import br.com.surb.catalog.shared.exeptions.ExeptionsService.AppDataIntegrityViolationException;
 import br.com.surb.catalog.shared.exeptions.ExeptionsService.AppEntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -18,11 +18,11 @@ public class ProductDeleteService {
     public void execute(Long id) {
         try {
             if (productRepository.existsByIdAndActive(id, true) || !productRepository.existsByIdAndActive(id, false)) {
-                throw new AppEntityNotFoundException(AppExceptionConstants.ENTITY_DEACTIVATE);
+                throw new AppEntityNotFoundException(ExceptionConstants.ENTITY_DEACTIVATE);
             }
             productRepository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            throw new AppDataIntegrityViolationException(AppExceptionConstants.DATA_INTEGRITY_VIOLATION);
+            throw new AppDataIntegrityViolationException(ExceptionConstants.DATA_INTEGRITY_VIOLATION);
         }
     }
 }

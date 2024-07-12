@@ -6,7 +6,7 @@ import br.com.surb.catalog.modules.user.mapper.UserMapper;
 import br.com.surb.catalog.modules.user.repository.UserRepository;
 import br.com.surb.catalog.modules.user.request.UserRoleRequest;
 import br.com.surb.catalog.modules.user.response.UserRoleResponse;
-import br.com.surb.catalog.shared.constants.AppExceptionConstants;
+import br.com.surb.catalog.shared.constants.ExceptionConstants;
 import br.com.surb.catalog.shared.exeptions.ExeptionsResource.AppResourceNotFondExecption;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class UserUpdateService {
             userRepository.save(entity);
             return UserMapper.toCustomResponse(entity);
         } catch (EntityNotFoundException e) {
-            throw new AppResourceNotFondExecption(AppExceptionConstants.RESOURCE_NOT_FOUND);
+            throw new AppResourceNotFondExecption(ExceptionConstants.RESOURCE_NOT_FOUND);
         }
     }
 
