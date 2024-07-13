@@ -48,13 +48,13 @@ public class AppResourceAdviceExceptionHandler {
     public ResponseEntity<StandarError> dataIntegrityViolationException(AppDataIntegrityViolationException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
-        return ResponseEntity.status(status).body(StandarError.builder()
-                .timestamp(Instant.now())
-                .status(status.value())
-                .error(ExceptionConstants.DATA_INTEGRITY_VIOLATION)
-                .message(e.getMessage())
-                .path(request.getRequestURI())
-                .build());
+        return ResponseEntity.status(status).body(new StandarError(
+                Instant.now(),
+                status.value(),
+                ExceptionConstants.DATA_INTEGRITY_VIOLATION,
+                e.getMessage(),
+                request.getRequestURI())
+        );
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -64,7 +64,7 @@ public class AppResourceAdviceExceptionHandler {
         ValidationError err = new ValidationError();
         err.setTimestamp(Instant.now());
         err.setStatus(status.value());
-        err.setError(ExceptionConstants.VIOLATION_ERROR);
+        err.setError(ExceptionConstants.VIOLATION_EXCEPTION);
         err.setMessage(e.getMessage());
         err.setPath(request.getRequestURI());
 

@@ -13,4 +13,6 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
     Optional<Role> findByIdAndActive(Long id, Boolean active);
 
     Optional<Role> findByAuthorityAndActive(String name, Boolean active);
+
+    Role findByAuthority(String authority);
 }

@@ -4,7 +4,7 @@ import br.com.surb.catalog.modules.role.repository.RoleRepository;
 import br.com.surb.catalog.modules.user.entity.User;
 import br.com.surb.catalog.modules.user.mapper.UserMapper;
 import br.com.surb.catalog.modules.user.repository.UserRepository;
-import br.com.surb.catalog.modules.user.request.UserRoleRequest;
+import br.com.surb.catalog.modules.user.request.UserCreateRequest;
 import br.com.surb.catalog.modules.user.response.UserRoleResponse;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class UserCreateService {
     }
 
     @Transactional
-    public UserRoleResponse execute(UserRoleRequest request) {
+    public UserRoleResponse execute(UserCreateRequest request) {
         User entity = UserMapper.toCreateRequest(request, roleRepository);
         entity.setPassword(passwordEncoder.encode(request.password()));
         entity = userRepository.save(entity);

@@ -1,6 +1,6 @@
 package br.com.surb.catalog.modules.user.resource;
 
-import br.com.surb.catalog.modules.user.request.UserRoleRequest;
+import br.com.surb.catalog.modules.user.request.UserUpdateRequest;
 import br.com.surb.catalog.modules.user.response.UserRoleResponse;
 import br.com.surb.catalog.modules.user.service.UserUpdateService;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class UserUpdateResource {
     }
 
     @PutMapping(value = "/{id}")
-    public CompletableFuture<ResponseEntity<UserRoleResponse>> handle(@PathVariable Long id, @RequestBody UserRoleRequest request) {
+    public CompletableFuture<ResponseEntity<UserRoleResponse>> handle(@PathVariable Long id, @RequestBody UserUpdateRequest request) {
         return supplyAsync(() -> userUpdateService.execute(id, request), executor).thenApply((product) -> ResponseEntity.ok().body(product));
     }
 

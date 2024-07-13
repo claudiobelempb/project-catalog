@@ -5,8 +5,9 @@ import br.com.surb.catalog.modules.role.repository.RoleRepository;
 import br.com.surb.catalog.modules.role.response.RoleCustomResponse;
 import br.com.surb.catalog.modules.user.entity.User;
 import br.com.surb.catalog.modules.user.repository.UserRepository;
+import br.com.surb.catalog.modules.user.request.UserCreateRequest;
 import br.com.surb.catalog.modules.user.request.UserRequest;
-import br.com.surb.catalog.modules.user.request.UserRoleRequest;
+import br.com.surb.catalog.modules.user.request.UserUpdateRequest;
 import br.com.surb.catalog.modules.user.response.UserResponse;
 import br.com.surb.catalog.modules.user.response.UserRoleResponse;
 
@@ -59,7 +60,7 @@ public final class UserMapper {
         return entity;
     }
 
-    public static User toCreateRequest(UserRoleRequest request, RoleRepository repository) {
+    public static User toCreateRequest(UserCreateRequest request, RoleRepository repository) {
         if (request.email() == null) {
             return null;
         }
@@ -78,7 +79,7 @@ public final class UserMapper {
 
     public static User toUpdateRequest(
             Long id,
-            UserRoleRequest request,
+            UserUpdateRequest request,
             UserRepository userRepository,
             RoleRepository roleRepository
     ) {

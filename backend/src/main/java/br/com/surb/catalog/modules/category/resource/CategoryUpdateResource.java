@@ -1,8 +1,10 @@
 package br.com.surb.catalog.modules.category.resource;
 
 import br.com.surb.catalog.modules.category.request.CategoryRequest;
+import br.com.surb.catalog.modules.category.request.CategoryUpdateRequest;
 import br.com.surb.catalog.modules.category.response.CategoryResponse;
 import br.com.surb.catalog.modules.category.service.CategoryUpdateService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +25,7 @@ public class CategoryUpdateResource {
     }
 
     @PutMapping(value = "/{id}")
-    public CompletableFuture<ResponseEntity<CategoryResponse>> handle(@PathVariable Long id, @RequestBody CategoryRequest request) {
+    public CompletableFuture<ResponseEntity<CategoryResponse>> handle(@PathVariable Long id, @Valid @RequestBody CategoryUpdateRequest request) {
         return supplyAsync(() -> categoryUpdateService.execute(id, request), executor).thenApply((response) -> ResponseEntity.ok().body(response));
     }
 }

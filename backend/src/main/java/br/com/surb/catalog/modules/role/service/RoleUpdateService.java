@@ -3,7 +3,7 @@ package br.com.surb.catalog.modules.role.service;
 import br.com.surb.catalog.modules.role.entity.Role;
 import br.com.surb.catalog.modules.role.mapper.RoleMapper;
 import br.com.surb.catalog.modules.role.repository.RoleRepository;
-import br.com.surb.catalog.modules.role.request.RoleUserRequest;
+import br.com.surb.catalog.modules.role.request.RoleUpdateRequest;
 import br.com.surb.catalog.modules.role.response.RoleResponse;
 import br.com.surb.catalog.shared.constants.ExceptionConstants;
 import br.com.surb.catalog.shared.exeptions.ExeptionsService.AppEntityNotFoundException;
@@ -20,7 +20,7 @@ public class RoleUpdateService {
     }
 
     @Transactional
-    public RoleResponse execute(Long id, RoleUserRequest request) {
+    public RoleResponse execute(Long id, RoleUpdateRequest request) {
         try {
             Role entity = RoleMapper.toUpdateRequest(id, request, roleRepository);
             entity = roleRepository.save(entity);

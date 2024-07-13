@@ -1,8 +1,9 @@
 package br.com.surb.catalog.modules.role.resource;
 
-import br.com.surb.catalog.modules.role.request.RoleUserRequest;
+import br.com.surb.catalog.modules.role.request.RoleUpdateRequest;
 import br.com.surb.catalog.modules.role.response.RoleResponse;
 import br.com.surb.catalog.modules.role.service.RoleUpdateService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class RoleUpdateResource {
     }
 
     @PutMapping(value = "/{id}")
-    public CompletableFuture<ResponseEntity<RoleResponse>> handle(@PathVariable Long id, @RequestBody RoleUserRequest request) {
+    public CompletableFuture<ResponseEntity<RoleResponse>> handle(@PathVariable Long id, @Valid @RequestBody RoleUpdateRequest request) {
         return supplyAsync(() -> roleUpdateService.execute(id, request), executor).thenApply((category) -> ResponseEntity.ok().body(category));
     }
 }
