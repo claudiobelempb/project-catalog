@@ -5,15 +5,15 @@ import br.com.surb.catalog.modules.role.repository.RoleRepository;
 import br.com.surb.catalog.modules.role.response.RoleCustomResponse;
 import br.com.surb.catalog.modules.user.entity.User;
 import br.com.surb.catalog.modules.user.repository.UserRepository;
+import br.com.surb.catalog.modules.user.request.UserCreateRequest;
 import br.com.surb.catalog.modules.user.request.UserRequest;
-import br.com.surb.catalog.modules.user.request.UserRoleRequest;
+import br.com.surb.catalog.modules.user.request.UserUpdateRequest;
 import br.com.surb.catalog.modules.user.response.UserResponse;
 import br.com.surb.catalog.modules.user.response.UserRoleResponse;
 
 import java.util.stream.Collectors;
 
 public final class UserMapper {
-
     public static UserResponse toResponse(User entity) {
         if (entity == null) {
             return null;
@@ -60,7 +60,7 @@ public final class UserMapper {
         return entity;
     }
 
-    public static User toCreateRequest(UserRoleRequest request, RoleRepository repository) {
+    public static User toCreateRequest(UserCreateRequest request, RoleRepository repository) {
         if (request.email() == null) {
             return null;
         }
@@ -68,7 +68,6 @@ public final class UserMapper {
         entity.setFirstName(request.firstName());
         entity.setLastName(request.lastName());
         entity.setEmail(request.email());
-        entity.setPassword(request.password());
 
         entity.getRoles().clear();
         for (RoleCustomResponse r : request.roles()) {
@@ -80,7 +79,7 @@ public final class UserMapper {
 
     public static User toUpdateRequest(
             Long id,
-            UserRoleRequest request,
+            UserUpdateRequest request,
             UserRepository userRepository,
             RoleRepository roleRepository
     ) {
@@ -91,7 +90,6 @@ public final class UserMapper {
         entity.setFirstName(request.firstName());
         entity.setLastName(request.lastName());
         entity.setEmail(request.email());
-        entity.setPassword(request.password());
 
         entity.getRoles().clear();
         for (RoleCustomResponse r : request.roles()) {

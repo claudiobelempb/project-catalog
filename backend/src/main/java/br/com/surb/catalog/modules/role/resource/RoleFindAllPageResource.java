@@ -1,6 +1,6 @@
 package br.com.surb.catalog.modules.role.resource;
 
-import br.com.surb.catalog.modules.role.response.RoleUserResponse;
+import br.com.surb.catalog.modules.role.response.RoleResponse;
 import br.com.surb.catalog.modules.role.service.RoleFindAllPageService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +26,7 @@ public class RoleFindAllPageResource {
     }
 
     @GetMapping
-    public CompletableFuture<ResponseEntity<Page<RoleUserResponse>>> handle(
+    public CompletableFuture<ResponseEntity<Page<RoleResponse>>> handle(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
             @RequestParam(value = "direction", defaultValue = "ASC") String direction,

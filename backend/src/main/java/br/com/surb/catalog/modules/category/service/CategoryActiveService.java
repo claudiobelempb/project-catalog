@@ -3,7 +3,7 @@ package br.com.surb.catalog.modules.category.service;
 
 import br.com.surb.catalog.modules.category.entity.Category;
 import br.com.surb.catalog.modules.category.repository.CategoryRepository;
-import br.com.surb.catalog.shared.constants.AppExceptionConstants;
+import br.com.surb.catalog.shared.constants.ExceptionConstants;
 import br.com.surb.catalog.shared.exeptions.ExeptionsService.AppEntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +24,7 @@ public class CategoryActiveService {
         Objects.requireNonNull(id);
         Category entity = categoryRepository
                 .findByIdAndActive(id, false)
-                .orElseThrow(() -> new AppEntityNotFoundException(AppExceptionConstants.ENTITY_NOT_FOUND + id));
+                .orElseThrow(() -> new AppEntityNotFoundException(ExceptionConstants.ENTITY_NOT_FOUND + id));
         entity.setActive(true);
         categoryRepository.save(entity);
     }

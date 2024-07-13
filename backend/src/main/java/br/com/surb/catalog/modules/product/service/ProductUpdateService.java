@@ -6,7 +6,7 @@ import br.com.surb.catalog.modules.product.mapper.ProductMapper;
 import br.com.surb.catalog.modules.product.repository.ProductRepository;
 import br.com.surb.catalog.modules.product.request.ProductCategoryRequest;
 import br.com.surb.catalog.modules.product.response.ProductCategoryResponse;
-import br.com.surb.catalog.shared.constants.AppExceptionConstants;
+import br.com.surb.catalog.shared.constants.ExceptionConstants;
 import br.com.surb.catalog.shared.exeptions.ExeptionsResource.AppResourceNotFondExecption;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class ProductUpdateService {
             entity = productRepository.save(entity);
             return ProductMapper.toCustomResponse(entity);
         } catch (EntityNotFoundException e) {
-            throw new AppResourceNotFondExecption(AppExceptionConstants.RESOURCE_NOT_FOUND);
+            throw new AppResourceNotFondExecption(ExceptionConstants.RESOURCE_NOT_FOUND);
         }
     }
 }

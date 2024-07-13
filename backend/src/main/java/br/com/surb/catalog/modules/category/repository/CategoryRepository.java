@@ -15,5 +15,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     Optional<Category> findByIdAndActive(Long id, Boolean active);
 
-    Optional<Category> findByNameAndActive(String name, Boolean active);
+    Category findByNameAndActive(String name, Boolean active);
 }

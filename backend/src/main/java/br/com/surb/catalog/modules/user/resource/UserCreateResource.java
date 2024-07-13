@@ -1,8 +1,9 @@
 package br.com.surb.catalog.modules.user.resource;
 
-import br.com.surb.catalog.modules.user.request.UserRoleRequest;
+import br.com.surb.catalog.modules.user.request.UserCreateRequest;
 import br.com.surb.catalog.modules.user.response.UserRoleResponse;
 import br.com.surb.catalog.modules.user.service.UserCreateService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,7 @@ public class UserCreateResource {
     }
 
     @PostMapping
-    public CompletableFuture<ResponseEntity<UserRoleResponse>> handle(@RequestBody UserRoleRequest request) {
+    public CompletableFuture<ResponseEntity<UserRoleResponse>> handle(@Valid @RequestBody UserCreateRequest request) {
         UserRoleResponse response = userCreateService.execute(request);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(response.id()).toUri();
         return supplyAsync(() -> response, executor).thenApply((__) -> ResponseEntity.created(uri).body(response));

@@ -2,8 +2,9 @@ package br.com.surb.catalog.modules.role.mapper;
 
 import br.com.surb.catalog.modules.role.entity.Role;
 import br.com.surb.catalog.modules.role.repository.RoleRepository;
+import br.com.surb.catalog.modules.role.request.RoleCreateRequest;
 import br.com.surb.catalog.modules.role.request.RoleRequest;
-import br.com.surb.catalog.modules.role.request.RoleUserRequest;
+import br.com.surb.catalog.modules.role.request.RoleUpdateRequest;
 import br.com.surb.catalog.modules.role.response.RoleResponse;
 import br.com.surb.catalog.modules.role.response.RoleUserResponse;
 import br.com.surb.catalog.modules.user.response.UserCustomResponse;
@@ -50,9 +51,16 @@ public final class RoleMapper {
         return entity;
     }
 
+    public static Role toCreateRequest(RoleCreateRequest request) {
+        Role entity = new Role();
+        entity.setAuthority(request.authority());
+        return entity;
+    }
+
+
     public static Role toUpdateRequest(
             Long id,
-            RoleUserRequest request,
+            RoleUpdateRequest request,
             RoleRepository roleRepository
     ) {
         Role entity = roleRepository.getReferenceById(id);

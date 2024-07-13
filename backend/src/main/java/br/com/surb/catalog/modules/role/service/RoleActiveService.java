@@ -2,7 +2,7 @@ package br.com.surb.catalog.modules.role.service;
 
 import br.com.surb.catalog.modules.role.entity.Role;
 import br.com.surb.catalog.modules.role.repository.RoleRepository;
-import br.com.surb.catalog.shared.constants.AppExceptionConstants;
+import br.com.surb.catalog.shared.constants.ExceptionConstants;
 import br.com.surb.catalog.shared.exeptions.ExeptionsService.AppEntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class RoleActiveService {
         Objects.requireNonNull(id);
         Role entity = roleRepository
                 .findByIdAndActive(id, false)
-                .orElseThrow(() -> new AppEntityNotFoundException(AppExceptionConstants.ENTITY_NOT_FOUND + id));
+                .orElseThrow(() -> new AppEntityNotFoundException(ExceptionConstants.ENTITY_NOT_FOUND + id));
         entity.setActive(true);
         roleRepository.save(entity);
     }
