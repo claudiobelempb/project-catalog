@@ -1,7 +1,6 @@
 package br.com.surb.catalog.modules.user.request;
 
 import br.com.surb.catalog.modules.role.response.RoleCustomResponse;
-import br.com.surb.catalog.modules.user.validation.UserCreateValidation.UserCreateValid;
 import br.com.surb.catalog.modules.user.validation.UserUpdateValidation.UserUpdateValid;
 import br.com.surb.catalog.shared.constants.ValidatorConstants;
 import jakarta.validation.constraints.Email;

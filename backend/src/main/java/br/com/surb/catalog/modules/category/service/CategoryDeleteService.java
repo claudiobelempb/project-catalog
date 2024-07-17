@@ -18,7 +18,7 @@ public class CategoryDeleteService {
     public void execute(Long id) {
         try {
             if (categoryRepository.existsByIdAndActive(id, true) || !categoryRepository.existsByIdAndActive(id, false)) {
-                throw new AppEntityNotFoundException(ExceptionConstants.ENTITY_NOT_FOUND);
+                throw new AppEntityNotFoundException(ExceptionConstants.ENTITY_DEACTIVATE);
             }
             categoryRepository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
